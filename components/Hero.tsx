@@ -29,10 +29,14 @@ const Hero = () => {
           handleClick={handleScroll}
         />
       </div>
+
+      {/* Container for the hero image */}
       <div className='hero__image-container'>
         <div className='hero__image'>
+          {/* Display the hero image */}
           <Image src='/hero.png' alt='hero' fill className='object-contain' />
 
+          {/* Overlay for the hero image */}
           <div className='hero__image-overlay' />
         </div>
       </div>
