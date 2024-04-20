@@ -1,3 +1,5 @@
+import { CarProps } from "@/types";
+
 // Define a function to fetch car data from the API
 export async function fetchhCars() {
   // Define the headers required for the API request
@@ -7,7 +9,7 @@ export async function fetchhCars() {
   };
 
   // Fetch car data from the API
-  const response = await fetch("https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla", { headers });
+  const response = await fetch("https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=q3", { headers });
 
   // Parse the response as JSON
   const result = await response.json();
@@ -34,4 +36,24 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
 
   // Return the calculated rental rate
   return rentalRatePerDay.toFixed(0);
+};
+
+// Define a function to generate the car image URL
+export const generateCarImageUrl = (car: CarProps, angle?: string) => {
+  // Create a new URL for the car image
+  const url = new URL("https://cdn.imagin.studio/getimage");
+
+  // Extract relevant information from the car object
+  const { make, year, model } = car;
+
+  // Set parameters for the car image URL
+  url.searchParams.append("customer", "hrjavascript-mastery");
+  url.searchParams.append("make", make);
+  url.searchParams.append("modelFamily", model.split(" ")[0]);
+  url.searchParams.append("zoomType", "fullscreen");
+  url.searchParams.append("modelYear", `${year}`);
+  url.searchParams.append("angle", `${angle ? angle : ""}`);
+
+  // Return the generated car image URL
+  return `${url}`;
 };
