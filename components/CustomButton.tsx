@@ -9,7 +9,7 @@ import Image from "next/image";
 import { CustomButtonProps } from "@/types";
 
 // Define the CustomButton functional component
-const CustomButton = ({ title, containerStyles, handleClick, btnType }: CustomButtonProps) => {
+const CustomButton = ({ title, containerStyles, handleClick, btnType, textStyles, rightIcon }: CustomButtonProps) => {
   return (
     // Button element with dynamic title, styles, and click handler
     <button
@@ -18,7 +18,14 @@ const CustomButton = ({ title, containerStyles, handleClick, btnType }: CustomBu
       className={`custom-btn ${containerStyles}`}
       onClick={handleClick}
     >
-      <span className={`flex-1`}>{title}</span>
+      {/* Button title */}
+      <span className={`flex-1 ${textStyles}`}>{title}</span>
+      {/* Render the right icon if provided */}
+      {rightIcon && (
+        <div className='relative w-6 h-6'>
+          <Image src={rightIcon} alt='right icon' fill className='object-contain' />
+        </div>
+      )}
     </button>
   );
 };
